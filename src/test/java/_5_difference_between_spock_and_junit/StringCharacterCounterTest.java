@@ -1,4 +1,4 @@
-package _4_spock_basics;
+package _5_difference_between_spock_and_junit;
 
 import org.junit.Assert;
 import org.junit.Before;
