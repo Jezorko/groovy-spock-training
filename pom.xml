@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pl.upaid</groupId>
+    <artifactId>groovy-spock-training</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <gmavenplus-plugin.version>1.5</gmavenplus-plugin.version>
+
+        <groovy-all.version>2.4.12</groovy-all.version>
+        <spock-core.version>1.1-groovy-2.4</spock-core.version>
+        <spock-spring.version>1.1-groovy-2.4</spock-spring.version>
+        <cglib-nodep.version>3.2.5</cglib-nodep.version>
+        <objenesis.version>2.6</objenesis.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <!--Wymagany do uruchamiania testów poleceniem mvn test-->
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>${gmavenplus-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!--Groovy, nie musimy tego dodawać jeżeli mamy już spock-core-->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy-all.version}</version>
+        </dependency>
+
+        <!--Spock Framework, czyli podstawowa zależność której potrzebujemy-->
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>${spock-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--Zamiast spock-core, pozwala na tworzenie testów integracyjnych w Spocku-->
+        <!--<dependency>-->
+        <!--<groupId>org.spockframework</groupId>-->
+        <!--<artifactId>spock-spring</artifactId>-->
+        <!--<version>${spock-spring.version}</version>-->
+        <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
+        <!--Pozwala mockować klasy, a nie tylko interfejsy-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>${cglib-nodep.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--Pozwala mockować klasy bez domyślnego konstruktora-->
+        <dependency>
+            <groupId>org.objenesis</groupId>
+            <artifactId>objenesis</artifactId>
+            <version>${objenesis.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
